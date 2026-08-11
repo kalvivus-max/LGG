@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nightfall - Jeu de Rôles Cachés</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Écran de connexion -->
+        <div id="login-screen" class="screen">
+            <div class="logo-area">
+                <h1>NIGHTFALL</h1>
+                <p>Démasquez les traîtres avant qu'il ne soit trop tard</p>
+            </div>
+            <div class="input-group">
+                <input type="text" id="username-input" placeholder="Votre pseudo secret..." maxlength="12">
+                <button id="join-btn" class="btn-primary">Rejoindre la partie</button>
+            </div>
+            <p id="error-message" class="error-msg"></p>
+        </div>
+
+        <!-- Salon d'attente -->
+        <div id="lobby-screen" class="screen hidden">
+            <h2>Salon des Citoyens</h2>
+            <p class="subtitle">En attente des autres joueurs...</p>
+            <div class="card-box">
+                <ul id="players-list"></ul>
+            </div>
+            <button id="start-btn" class="btn-primary hidden">Lancer la Partie 🚀</button>
+            <p id="waiting-host-text" class="waiting-notice">L'hôte va bientôt lancer la partie...</p>
+        </div>
+
+        <!-- Écran de jeu principal -->
+        <div id="game-screen" class="screen hidden">
+            <header class="game-header">
+                <div class="role-card">
+                    <span class="label">Votre Rôle</span>
+                    <h3 id="my-role">---</h3>
+                </div>
+                <div class="camp-card">
+                    <span class="label">Votre Camp</span>
+                    <h3 id="my-camp">---</h3>
+                </div>
+            </header>
+
+            <div class="main-game-layout">
+                <!-- Sidebar Participants & Votes -->
+                <div class="players-panel">
+                    <h3>Villageois (Cliquer pour voter)</h3>
+                    <ul id="game-players-list"></ul>
+                </div>
+
+                <!-- Chat Section -->
+                <div class="chat-panel">
+                    <div id="chat-messages"></div>
+                    <div class="chat-input-row">
+                        <input type="text" id="chat-input" placeholder="Discuter ou accuser...">
+                        <button id="send-btn" class="btn-send">Envoyer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
